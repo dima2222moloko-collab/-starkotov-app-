@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STARKOTOV</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #000000;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #000000;
+        }
+
+        /* Навбар */
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 10px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+        }
+
+        .nav-item {
+            text-align: center;
+            font-size: 12px;
+            color: #888;
+        }
+
+        .nav-item.active {
+            color: #00ff88;
+        }
+
+        /* Шапка */
+        .header {
+            padding: 20px 15px;
+            background: #1a1a1a;
+            border-bottom: 1px solid #333;
+        }
+
+        .balance {
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            text-align: center;
+            color: #00ff88;
+            font-size: 14px;
+        }
+
+        /* Контент */
+        .content {
+            padding: 15px;
+        }
+
+        .section {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+        }
+
+        .section-title {
+
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        /* Рулетка */
+        .roulette-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .roulette-option {
+            background: #2a2a2a;
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            margin: 0 5px;
+            border: 1px solid #444;
+        }
+
+        .roulette-option.active {
+            background: #00ff88;
+            color: #000;
+        }
+
+        .spin-button {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .free-spin {
+            background: #333;
+            color: #00ff88;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+            border: 1px solid #00ff88;
+        }
+
+        /* История */
+        .history-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .history-item:last-child {
+            border-bottom: none;
+        }
+
+        .history-type {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .history-amount {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        /* Инвентарь */
+        .inventory-item {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 10px;
+            border: 1px solid #444;
+        }
+
+        .get-button {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Навбар -->
+        <div class="navbar">
+            <div class="nav-item active">Главная</div>
+            <div class="nav-item">Задания</div>
+            <div class="nav-item">Рулетка</div>
+            <div class="nav-item">Магазин</div>
+            <div class="nav-item">История</div>
+        </div>
+
+        <!-- Главная -->
+        <div id="mainScreen">
+            <div class="header">
+                <div class="balance">54,281</div>
+                <div class="status">Вы ЗДОРОВЫ</div>
+            </div>
+
+            <div class="content">
+                <!-- Инвентарь -->
+                <div class="section">
+                    <div class="section-title">ИНВЕНТАРЬ</div>
+                    <div class="inventory-item">
+                        <div>6 STARS</div>
+                        <button class="get-button">ПОЛУЧИТЬ</button>
+                    </div>
+                </div>
+
+                <!-- Рулетка -->
+                <div class="section">
+                    <div class="section-title">РУЛЕТКА</div>
+                    <div class="free-spin">
+                        БЕСПЛАТНОЕ ВРАЩЕНИЕ<br>
+                        ЧЕРЕЗ: 11:38:06
+                    </div>
+                    <div class="roulette-options">
+                        <div class="roulette-option active">1X</div>
+                        <div class="roulette-option">10X ШАНС</div>
+                        <div class="roulette-option">100X</div>
+                    </div>
+                    <button class="spin-button">РАСКРУТИТЬ ЗА 1,500</button>
+                    <div style="text-align: center; margin-top: 10px; color: #888; font-size: 12px;">
+                        ДВОЙНОЙ ТАП ДЛЯ БЫСТРОГО КРУЧЕНИЯ
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- История (скрыто) -->
+        <div id="historyScreen" style="display: none;">
+            <div class="header">
+                <div class="section-title">ИСТОРИЯ</div>
+            </div>
+            <div class="content">
+                <div class="section">
+                    <div style="margin-bottom: 15px;">
+                        <div style="color: #888; margin-bottom: 10px;">СЕГОДНЯ</div>
+                        <div class="history-item">
+                            <div>
+                                <div>Приз рулетки 6 Stars</div>
+                                <div class="history-type">Достижения</div>
+                            </div>
+                            <div class="history-amount">6 ★</div>
+                        </div>
+                        <div class="history-item">
+                            <div>
+                                <div>Вращение рулетки</div>
+                                <div class="history-type">Пополнения</div>
+                            </div>
+                            <div class="history-amount"></div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <div style="color: #888; margin-bottom: 10px;">ВЧЕРА</div>
+                        <div class="history-item">
+                            <div>
+                                <div>Награда за историю рулетки</div>
+                                <div class="history-type">Достижения</div>
+                            </div>
+                            <div class="history-amount">5 ★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация Telegram Web App
+        let tg = Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+        
+        // Навигация
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Убираем активный класс у всех
+                document.querySelectorAll('.nav-item').forEach(nav => {
+                    nav.classList.remove('active');
+                });
+                // Добавляем активный класс текущему
+                this.classList.add('active');
+                
+                // Показываем соответствующий экран
+                const screenName = this.textContent.trim();
+                if (screenName === 'История') {
+                    document.getElementById('mainScreen').style.display = 'none';
+                    document.getElementById('historyScreen').style.display = 'block';
+                } else {
+                    document.getElementById('mainScreen').style.display = 'block';
+                    document.getElementById('historyScreen').style.display = 'none';
+                }
+            });
+        });
+
+        // Вращение рулетки
+        document.querySelector('.spin-button').addEventListener('click', function() {
+            alert('🎰 Рулетка запущена!');
+        });
+
+        // Получить звезды
+        document.querySelector('.get-button').addEventListener('click', function() {
+            alert('⭐ Звезды получены!');
+        });
+    </script>
+</body>
+</html>
